@@ -2,7 +2,7 @@ machine:
   version:
     python: 3.6.0
     
-
+    
 test:
-  override:
-    - python -m unittest discover
+  minitest_globs:
+    - tests/test_worker_basic.py
