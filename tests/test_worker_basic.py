@@ -80,7 +80,7 @@ class TestWorkerBasic(unittest.TestCase):
 
         worker = None
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
-        worker.max_links = 0
+        worker.max_links = 3
 
         len_to_crawl_before = len(worker.to_crawl)
         worker.add_links("test.com")
