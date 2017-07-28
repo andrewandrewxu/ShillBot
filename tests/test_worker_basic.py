@@ -76,7 +76,7 @@ class TestWorkerBasic(unittest.TestCase):
 
         self.assertGreater(len(results), 3)     # Check that results are returned
 
-    def test_worker_add_links_max_limit(self):
+    def test_worker_add_links_max_limit(self):	# Check if the max links is not 0, then length after adding a link does not equal to before
 
         worker = None
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
