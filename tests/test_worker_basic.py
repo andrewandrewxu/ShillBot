@@ -59,6 +59,34 @@ class TestWorkerBasic(unittest.TestCase):
 
         self.assertNotEqual(len_to_crawl_after, len_to_crawl_before)
 
+    def test_worker_parsing(self):
+        """
+        Purpose: Test regular parsing mechanisms of worker
+        Expectation: Load html file, send it to worker to parse, should return list of results
+
+        :return:
+        """
+        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+        file_path = '%s/%s' % (os.path.dirname(os.path.realpath(__file__)), 'test_resources/sample_GET_response.html')
+
+        with codecs.open(file_path, encoding='utf-8') as f:
+            text = f.read()
+
+        results, next_page = worker.parse_text(str(text).strip().replace('\r\n', ''))
+
+        self.assertGreater(len(results), 3)     # Check that results are returned
+
+    def test_worker_add_links_max_limit(self):
+
+        worker = None
+        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+        worker.max_links = 0
+
+        len_to_crawl_before = len(worker.to_crawl)
+        worker.add_links("test.com")
+        len_to_crawl_after = len(worker.to_crawl)
+        self.assertNotEqual(len_to_crawl_after, len_to_crawl_before)
+
 
 
 
