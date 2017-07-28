@@ -8,6 +8,19 @@ from workers.basic_worker import BasicUserParseWorker
 
 class TestWorkerBasic(unittest.TestCase):
 
+    def test_basic_worker_connection(self):
+        """
+        Purpose: Test regular running of worker
+        Expectation: startup system, hit the reddit user and parse the data, fail to send to mothership (exception)
+
+        :precondition: Mothership server not running
+        :return:
+        """
+        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+	ConnectionRefusedError = None
+        # Can't connect to mother, so should raise ConnectionRefusedError, but should run everything else
+        self.assertRaises(ConnectionRefusedError, worker.run)
+
     def test_worker_add_links_max_limit(self):
         worker = None
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
