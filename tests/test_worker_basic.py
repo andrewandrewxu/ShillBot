@@ -17,7 +17,7 @@ class TestWorkerBasic(unittest.TestCase):
         :return:
         """
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
-
+	ConnectionRefusedError = "null"
         # Can't connect to mother, so should raise ConnectionRefusedError, but should run everything else
         self.assertRaises(ConnectionRefusedError, worker.run)
 
