@@ -59,7 +59,7 @@ class TestWorkerBasic(unittest.TestCase):
 
         self.assertNotEqual(len_to_crawl_after, len_to_crawl_before)
 
-    def test_worker_parsing(self):
+    def test_worker_parsing_result(self):
         """
         Purpose: Test regular parsing mechanisms of worker
         Expectation: Load html file, send it to worker to parse, should return list of results
@@ -76,7 +76,7 @@ class TestWorkerBasic(unittest.TestCase):
 
         self.assertGreater(len(results), 3)     # Check that results are returned
 
-    def test_worker_add_links_max_limit(self):	# Check if the max links is not 0, then length after adding a link does not equal to before
+    def test_worker_add_links_max_limit_not0(self):	# Check if the max links is not 0, then length after adding a link does not equal to before
 
         worker = None
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
