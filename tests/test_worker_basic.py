@@ -74,7 +74,7 @@ class TestWorkerBasic(unittest.TestCase):
 
         results, next_page = worker.parse_text(str(text).strip().replace('\r\n', ''))
 
-        self.assertGreater(len(results), 3)     # Check that results are returned
+        self.assertGreater(len(results), 3)     # Check that the result contains three items, title, subreddit, post_text
 
     def test_worker_add_links_max_limit_not0(self):	# Check if the max links is not 0, then length after adding a link does not equal to before
 
@@ -86,6 +86,19 @@ class TestWorkerBasic(unittest.TestCase):
         worker.add_links("test.com")
         len_to_crawl_after = len(worker.to_crawl)
         self.assertNotEqual(len_to_crawl_after, len_to_crawl_before)
+		
+    def test_worker_add_links_in_crawled_checkDifference(self):
+        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+        worker.crawled = []
+		AddedNum = 0
+        len_to_crawl_before = len(worker.to_crawl)
+        worker.add_links(["https://www.reddit.com/user/Chrikelnel"])
+        worker.add_links(["https://www.reddit2.com/user/Chrikelnel"])
+		
+        len_to_crawl_after = len(worker.to_crawl)
+		AddedNum = len_to_crawl_after - len_to_crawl_before
+
+        self.assertEqual(AddedNum, 2)		
 
 
 
