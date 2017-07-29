@@ -96,8 +96,7 @@ class TestWorkerBasic(unittest.TestCase):
         worker.add_links(["https://www.reddit2.com/user/Chrikelnel"])
 		
         len_to_crawl_after = len(worker.to_crawl)
-		AddedNum = len_to_crawl_after - len_to_crawl_before
-        self.assertEqual(AddedNum, 2)		
+        self.assertEqual((len_to_crawl_after - len_to_crawl_before), 2)		
 
 
 
