@@ -97,7 +97,6 @@ class TestWorkerBasic(unittest.TestCase):
 		
         len_to_crawl_after = len(worker.to_crawl)
 		AddedNum = len_to_crawl_after - len_to_crawl_before
-
         self.assertEqual(AddedNum, 2)		
 
 
