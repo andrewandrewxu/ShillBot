@@ -1,7 +1,8 @@
-
+#!/usr/bin/python
 import unittest
 import codecs
 import os
+
 
 from workers.basic_worker import BasicUserParseWorker
 
@@ -90,7 +91,6 @@ class TestWorkerBasic(unittest.TestCase):
     def test_worker_add_links_in_crawled_checkDifference(self):
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         worker.crawled = []
-		AddedNum = 0
         len_to_crawl_before = len(worker.to_crawl)
         worker.add_links(["https://www.reddit.com/user/Chrikelnel"])
         worker.add_links(["https://www.reddit2.com/user/Chrikelnel"])
